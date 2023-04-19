@@ -1,0 +1,18 @@
+{
+    "name": "node-oke-app",
+    "version": "1.0.0",
+    "description": "Node Express Cloud Native OKE - Oracle Cloud Application",
+    "author": "José Neto <jose.bm.neto@oracle.com>",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/username/repository.git"
+    },
+    "dependencies": {
+        "express": "^4.0.0"
+    },
+    "license": "UPL-1.0"
+}                    
