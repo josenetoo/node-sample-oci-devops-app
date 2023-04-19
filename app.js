@@ -3,7 +3,7 @@ const app = express()
 port = 3000
 
 app.get('/', function (req, res) {
-    res.send('<h1>Bem-vindas(os)! racle Cloud Infrastructure DevOps Professional 2022 Certification</h1>')
+    res.send('<h1>Bem-vindas(os)! Oracle Cloud Infrastructure DevOps</h1>')
 })
 
 app.listen(port, function() {
