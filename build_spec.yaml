@@ -9,8 +9,8 @@ steps:
     name: "Build container image"
     command: |
       d ${OCI_WORKSPACE_DIR}/node_app
-      docker build -t node-oke-app:${OCI_BUILD_RUN_ID}  .
+      docker build -t node-oke-app:${BUILDRUN_HASH}  .
 outputArtifacts:
  - name: node-oke-app
    type: DOCKER_IMAGE
-   location: node-oke-app:${OCI_BUILD_RUN_ID}
+   location: node-oke-app:${BUILDRUN_HASH}
