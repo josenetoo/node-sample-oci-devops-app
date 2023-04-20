@@ -16,6 +16,14 @@ env:
   exportedVariables:
     - BUILDRUN_HASH
 steps:
+
+  - type: Command
+    name: "Define unique image tag"
+    timeoutInSeconds: 40
+    command: |
+      export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
+      echo "BUILDRUN_HASH: " $BUILDRUN_HASH
+
   - type: Command
     timeoutInSeconds: 1200
     name: "Build container image"
