@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-oke-app
+  namespace: oracle
+spec:
+  selector:
+    matchLabels:
+      app: node-oke-app
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: node-oke-app
+    spec:
+      containers:
+      - name: node-oke-app
+        image: <region-key>.ocir.io/<tenancy-namespace>/oke-apps/node-oke-app:${BUILDRUN_HASH}
+        imagePullPolicy: Always
+        ports:
+        - name: node-oke-app
+          containerPort: 3000
+          protocol: TCP
+      imagePullSecrets:
+        - name: ocirsecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-lb
+  namespace: oracle
+  labels:
+    app: node-oke-app
+  annotations:
+    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
+spec:
+  type: LoadBalancer
+  ports:
+    - name: node-oke-app
+      port: 80
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: node-oke-app
