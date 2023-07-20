@@ -3,7 +3,7 @@ const app = express()
 port = 3000
 
 app.get('/', function (req, res) {
-    res.send('<h1>Bem-vindas(os)! Oracle Cloud Infrastructure DevOps Version 1!!! DevOps Experience & DevOps Heroes!!! Quinta às quinze!!!</h1>')
+    res.send('<h1>Bem-vindas(os)! Oracle Cloud Infrastructure DevOps Version 2!!! DevOps Experience & DevOps Heroes!!! Quinta às quinze!!!</h1>')
 })
 
 app.listen(port, function() {
