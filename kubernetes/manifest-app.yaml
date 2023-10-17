@@ -27,20 +27,31 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: node-app-lb
+  name: node-oke-app-svc
   namespace: oracle
-  labels:
-    app: node-oke-app
-  annotations:
-    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
-    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
-    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
 spec:
-  type: LoadBalancer
-  ports:
-    - name: node-oke-app
-      port: 80
-      targetPort: 3000
-      protocol: TCP
   selector:
     app: node-oke-app
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: node-oke-app-ing
+  namespace: oracle
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: node-oke-app-svc
+              port:
+                number: 3000
