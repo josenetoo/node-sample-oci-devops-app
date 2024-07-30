@@ -28,7 +28,7 @@ steps:
     timeoutInSeconds: 1200
     name: "Build container image"
     command: |
-      d ${OCI_WORKSPACE_DIR}/node_app
+      cd ${OCI_WORKSPACE_DIR}/node_app
       docker build -t node-oke-app  .
 outputArtifacts:
  - name: node-oke-app
